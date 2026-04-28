@@ -52,6 +52,10 @@
             <div class="ni"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
             <span>Voucher</span>
         </a>
+        <a href="{{ route('admin.complaint-suggestions.index') }}" class="nav-item">
+            <div class="ni"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+            <span>Saran/Komplain</span>
+        </a>
     </nav>
 
     <p class="nav-label">AKUN</p>
@@ -229,6 +233,49 @@
             <div><h1>Voucher</h1><p class="sub">Kelola diskon dan promosi</p></div>
             <span class="live-tag">Live</span>
         </div>
+
+        <div class="card" style="margin-bottom:24px">
+            <div class="card-head"><h2>Buat Voucher Baru</h2></div>
+            <form action="{{ route('admin.vouchers.store') }}" method="POST" class="pform" style="padding: 20px;">
+                @csrf
+                <div class="frow">
+                    <div class="fg">
+                        <label>Nama Voucher</label>
+                        <div class="iw"><input type="text" name="name" placeholder="Contoh: Diskon Lebaran" required></div>
+                    </div>
+                    <div class="fg">
+                        <label>Tema Warna</label>
+                        <div class="iw">
+                            <select name="theme" required>
+                                <option value="blue">Biru (Blue)</option>
+                                <option value="purple">Ungu (Purple)</option>
+                                <option value="green">Hijau (Green)</option>
+                                <option value="orange">Oranye (Orange)</option>
+                                <option value="red">Merah (Red)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="frow">
+                    <div class="fg">
+                        <label>Nominal Potongan (Rp)</label>
+                        <div class="iw"><input type="number" name="discount_value" placeholder="15000" required></div>
+                    </div>
+                    <div class="fg">
+                        <label>Harga Poin</label>
+                        <div class="iw"><input type="number" name="point_need" placeholder="50" required></div>
+                    </div>
+                </div>
+                <div class="fg">
+                    <label>Keterangan Tambahan</label>
+                    <div class="iw"><input type="text" name="description" placeholder="Syarat dan ketentuan..."></div>
+                </div>
+                <div class="fact">
+                    <button type="submit" class="btn-primary">Simpan Voucher</button>
+                </div>
+            </form>
+        </div>
+
         <div class="voucher-grid" id="voucher-grid">
             <div class="empty-td" style="padding:40px;text-align:center">Memuat...</div>
         </div>

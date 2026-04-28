@@ -34,24 +34,28 @@ class VoucherController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $input = $request->validate([
-            'discount_value' => ['required'],
-            'point_need'     => ['required'],
+            'name'           => ['required', 'string'],
+            'description'    => ['nullable', 'string'],
+            'discount_value' => ['required', 'numeric'],
+            'point_need'     => ['required', 'numeric'],
+            'theme'          => ['nullable', 'string'],
         ]);
 
-        // Cek apakah potongan ada yang sama di database
-        $voucherExists = Voucher::where('discount_value', $input['discount_value'])->exists();
+        // Cek apakah nama voucher ada yang sama di database
+        $voucherExists = Voucher::where('name', $input['name'])->exists();
 
         if ($voucherExists) {
             return redirect()->route('admin.vouchers.index')
-                ->with('error', 'Voucher potongan ' . $input['discount_value'] . ' sudah ada');
+                ->with('error', 'Voucher dengan nama ' . $input['name'] . ' sudah ada');
         }
 
         // Masukkan potongan ke dalam tabel vouchers
         $voucher = new Voucher([
-            'name'           => 'Potongan ' . number_format($input['discount_value'], 0, ',', '.'),
+            'name'           => $input['name'],
             'discount_value' => $input['discount_value'],
             'point_need'     => $input['point_need'],
-            'description'    => 'Mendapatkan potongan harga ' . number_format($input['discount_value'], 0, ',', '.') . ' dari total transaksi',
+            'description'    => $input['description'] ?? 'Mendapatkan potongan harga ' . number_format($input['discount_value'], 0, ',', '.') . ' dari total transaksi',
+            'theme'          => $input['theme'] ?? 'blue',
             'active_status'  => 1,
         ]);
         $voucher->save();

@@ -92,6 +92,7 @@ class TransactionController extends Controller
         $categories = Category::all();
         $services = Service::all();
         $serviceTypes = ServiceType::all();
+        $members = User::where('role', \App\Enums\Role::Member)->get();
 
         // Check if there is an active transaction in session
         if ($request->session()->has('transaction') && $request->session()->has('memberIdTransaction')) {
@@ -117,6 +118,7 @@ class TransactionController extends Controller
                 'categories',
                 'services',
                 'serviceTypes',
+                'members',
                 'sessionTransaction',
                 'memberIdSessionTransaction',
                 'totalPrice',
@@ -130,6 +132,7 @@ class TransactionController extends Controller
             'categories',
             'services',
             'serviceTypes',
+            'members',
         ));
     }
 

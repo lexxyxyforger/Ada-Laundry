@@ -31,6 +31,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('islogin');
 
+// Checkout Subscription Route
+Route::get('/checkout/{plan}', function ($plan) {
+    $plans = [
+        'basic' => ['name' => 'Paket Basic', 'price' => 0, 'price_fmt' => 'Gratis'],
+        'pro' => ['name' => 'Paket Pro (Member)', 'price' => 99000, 'price_fmt' => 'Rp 99.000 / bln'],
+        'enterprise' => ['name' => 'Paket Enterprise', 'price' => 249000, 'price_fmt' => 'Rp 249.000 / bln'],
+    ];
+    $selectedPlan = $plans[$plan] ?? $plans['pro'];
+    return view('checkout', compact('selectedPlan', 'plan'));
+})->name('checkout');
+
 // Admin routes
 Route::prefix('admin')->middleware('islogin')->group(function () {
     // Dashboard
@@ -191,6 +202,7 @@ Route::prefix('api/admin')->middleware('islogin')->group(function () {
                 'discount_fmt'   => 'Rp ' . number_format($v->discount_value, 0, ',', '.'),
                 'point_need'     => $v->point_need,
                 'description'    => $v->description,
+                'theme'          => $v->theme ?? 'blue',
                 'active'         => (bool) $v->active_status,
             ];
         });
