@@ -1,62 +1,201 @@
-<p align="center"> <img src="https://laravel.com/img/logotype.min.svg" width="300"> </p>
-AdaLaundry
+<div align="center">
 
-AdaLaundry adalah aplikasi manajemen laundry berbasis web yang membantu mengelola transaksi, pelanggan, status cucian, dan laporan secara efisien dalam satu sistem terintegrasi.
+<img src="https://laravel.com/img/logotype.min.svg" width="250" alt="Laravel">
 
-Aplikasi ini dirancang dengan tampilan modern dan alur yang sederhana untuk mempermudah operasional bisnis laundry.
+<br/><br/>
 
-Fitur Utama
-Manajemen transaksi laundry
-Tracking status cucian
-Dashboard admin & member
-Manajemen pelanggan
-Sistem poin & voucher
-Laporan dan statistik
-Demo Akses
+# 🧺 AdaLaundry
 
-Admin:
+### Sistem Manajemen Laundry Modern Berbasis Web
 
-Email: admin@adalaundry.com
-Password: AdaLaundry222
-Teknologi yang Digunakan
-Laravel 9
-MySQL
-Tailwind CSS
-Docker (opsional)
-Instalasi
-Clone repository
+[![Laravel](https://img.shields.io/badge/Laravel-9.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Docker](https://img.shields.io/badge/Docker-Optional-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
+[![License](https://img.shields.io/badge/License-Open%20Source-brightgreen?style=for-the-badge)](LICENSE)
+
+<br/>
+
+> **AdaLaundry** adalah aplikasi manajemen laundry berbasis web yang membantu mengelola transaksi, pelanggan, status cucian, dan laporan secara efisien — semuanya dalam satu sistem terintegrasi dengan tampilan modern.
+
+<br/>
+
+[🚀 Demo Live](#-demo-akses) · [📦 Instalasi](#-instalasi) · [✨ Fitur](#-fitur-utama) · [🤝 Kontribusi](#-kontribusi)
+
+</div>
+
+---
+
+## ✨ Fitur Utama
+
+| Fitur | Deskripsi |
+|---|---|
+| 📋 **Manajemen Transaksi** | Catat dan kelola setiap transaksi laundry dengan mudah |
+| 🔄 **Tracking Status Cucian** | Pantau status cucian secara real-time dari masuk hingga selesai |
+| 🖥️ **Dashboard Admin & Member** | Tampilan dashboard yang berbeda dan optimal untuk tiap role |
+| 👥 **Manajemen Pelanggan** | Kelola data pelanggan dengan sistem yang terstruktur |
+| 🎁 **Sistem Poin & Voucher** | Program loyalitas pelanggan dengan reward poin dan voucher diskon |
+| 📊 **Laporan & Statistik** | Laporan lengkap untuk analisis performa bisnis laundry Anda |
+
+---
+
+## 🚀 Demo Akses
+
+Coba langsung aplikasinya tanpa perlu instalasi:
+
+```
+🌐 URL     : http://localhost:8000
+👤 Email   : admin@adalaundry.com
+🔑 Password: AdaLaundry222
+```
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **[Laravel 9](https://laravel.com)** — Backend framework PHP yang powerful dan elegan
+- **[MySQL](https://www.mysql.com)** — Database relasional yang andal
+- **[Tailwind CSS](https://tailwindcss.com)** — Utility-first CSS framework untuk UI modern
+- **[Docker](https://www.docker.com)** *(opsional)* — Containerization untuk deployment yang konsisten
+
+---
+
+## 📦 Instalasi
+
+### Prasyarat
+
+Pastikan kamu sudah menginstal:
+- PHP >= 8.0
+- Composer
+- MySQL
+- Node.js & NPM
+
+### Langkah Instalasi
+
+**1. Clone repository**
+```bash
 git clone https://github.com/username/adalaundry.git
 cd adalaundry
-Copy file environment
+```
+
+**2. Install dependencies**
+```bash
+composer install
+npm install && npm run build
+```
+
+**3. Setup environment**
+```bash
 cp .env.example .env
-Generate app key
 php artisan key:generate
-Setup database di file .env
+```
+
+**4. Konfigurasi database**
+
+Buka file `.env` dan sesuaikan:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
 DB_DATABASE=adalaundry
 DB_USERNAME=root
 DB_PASSWORD=
-Migrasi database
-php artisan migrate
-Jalankan aplikasi
+```
+
+**5. Migrasi & seed database**
+```bash
+php artisan migrate --seed
+```
+
+**6. Jalankan server**
+```bash
 php artisan serve
+```
 
-Buka di browser:
+**7. Buka di browser**
+```
 http://localhost:8000
+```
 
-Struktur Role
-Admin → mengelola transaksi, member, laporan
-Member → melihat transaksi, poin, dan status laundry
-Catatan
+> 💡 **Menggunakan Docker?** Jalankan `docker-compose up -d` dan skip langkah 6.
 
-Project ini dikembangkan sebagai bagian dari pembelajaran dan telah diupgrade ke Laravel 9 dengan peningkatan struktur dan UI.
+---
 
-Tujuan Project
+## 👥 Struktur Role
 
-Membuat sistem laundry yang:
+```
+AdaLaundry
+├── 🔑 Admin
+│   ├── Kelola transaksi
+│   ├── Kelola data member
+│   └── Akses laporan & statistik
+│
+└── 👤 Member
+    ├── Lihat riwayat transaksi
+    ├── Cek poin & voucher
+    └── Pantau status laundry
+```
 
-mudah digunakan
-efisien
-siap dikembangkan ke level production
-Lisensi
+---
 
-Project ini bersifat open-source dan bebas digunakan untuk pembelajaran maupun pengembangan lebih lanjut.
+## 📁 Struktur Proyek
+
+```
+adalaundry/
+├── app/
+│   ├── Http/Controllers/
+│   ├── Models/
+│   └── Services/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── resources/
+│   ├── views/
+│   └── js/
+├── routes/
+└── public/
+```
+
+---
+
+## 🎯 Tujuan Proyek
+
+Proyek ini dikembangkan dengan tiga prinsip utama:
+
+- 🟢 **Mudah Digunakan** — Antarmuka yang intuitif untuk semua kalangan
+- ⚡ **Efisien** — Alur kerja yang disederhanakan untuk operasional sehari-hari
+- 🔧 **Siap Dikembangkan** — Arsitektur yang bersih dan scalable menuju production
+
+---
+
+## 📝 Catatan Pengembangan
+
+Proyek ini merupakan bagian dari proses pembelajaran dan telah diupgrade ke **Laravel 9** dengan peningkatan signifikan pada struktur kode dan tampilan UI.
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat terbuka! Ikuti langkah berikut:
+
+1. Fork repository ini
+2. Buat branch baru (`git checkout -b feature/fitur-baru`)
+3. Commit perubahan (`git commit -m 'feat: tambah fitur baru'`)
+4. Push ke branch (`git push origin feature/fitur-baru`)
+5. Buat Pull Request
+
+---
+
+## 📄 Lisensi
+
+Proyek ini bersifat **open-source** dan bebas digunakan untuk keperluan pembelajaran maupun pengembangan lebih lanjut.
+
+---
+
+<div align="center">
+
+Dibuat dengan ❤️ menggunakan Laravel
+
+⭐ **Jangan lupa kasih bintang kalau project ini bermanfaat!** ⭐
+
+</div>
